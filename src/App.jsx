@@ -1,10 +1,16 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
+import { Products } from "./pages/Products";
+import { ProductDetails } from "./pages/ProductDetails";
 
 function App() {
 	const router = createBrowserRouter([
 		{
 			path: "/",
-			element: <div>Hello World</div>,
+			element: <Products />,
+		},
+		{
+			path: "/:id",
+			element: <ProductDetails />,
 		},
 	]);
 
