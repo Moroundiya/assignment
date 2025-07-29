@@ -34,7 +34,7 @@ export const Products = () => {
 				<div
 					className="relative cursor-pointer"
 					onClick={() => setShowCart(true)}>
-					<div className="w-5 h-5 bg-orange-500 text-white text-[11px] rounded-full absolute -top-2 -right-2 flex justify-center items-center">
+					<div className="w-5 h-5 bg-orange-500 text-white text-[10px] font-semibold rounded-full absolute -top-2 -right-2 flex justify-center items-center">
 						20
 					</div>
 					<Icon
@@ -47,7 +47,7 @@ export const Products = () => {
 			<div className="mt-6 gap-6 px-3 pt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:mt-10 lg:grid-cols-4 xl:grid-cols-5 lg:px-12">
 				<div className="bg-white rounded-[20px] shadow-lg p-1.5 lg:p-4 flex justify-center items-center flex-col cursor-pointer">
 					<div className="w-full bg-[#F7F7F7] rounded-[20px] flex justify-center items-center cursor-pointer group relative z-0">
-						<p className="bg-[#7A9E7E] text-white px-2.5 lg:px-3 rounded-md py-0.5 text-[10px] lg:text-[12px] absolute top-3 left-3 font-light">
+						<p className="bg-[#7A9E7E] text-white px-2.5 lg:px-3 rounded-md py-0.5 text-[10px] lg:text-[12px] absolute top-3 left-3">
 							In Stock
 						</p>
 						<img
@@ -57,7 +57,7 @@ export const Products = () => {
 						/>
 					</div>
 					<div className="mt-4 flex flex-col justify-center items-center">
-						<p className="text-[#54595F] text-sm lg:text-md font-light mb-1 lg:mb-2">
+						<p className="text-[#54595F] text-sm lg:text-md mb-1 lg:mb-2">
 							Skincare
 						</p>
 						<p className="font-semibold text-[1.05rem] lg:text-xl">PRODUCT 1</p>
