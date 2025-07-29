@@ -22,7 +22,6 @@ const cartSlice = createSlice({
 				});
 			}
 		},
-
 		removeItemFromCart(state, action) {
 			const itemId = action.payload.id;
 			const existingItem = state.items.find((item) => item.id === itemId);

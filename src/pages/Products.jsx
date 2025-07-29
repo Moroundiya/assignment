@@ -6,30 +6,30 @@ import axios from "axios";
 import { ProductCard } from "../components/ProductCard";
 import { Skeleton } from "../components/Skeleton";
 import { useDispatch, useSelector } from "react-redux";
+import { productAction } from "../redux/ProductSlice";
 
 export const Products = () => {
 	const [search, setSearch] = useState(false);
+	// const [searchValue, setSearchValue] = useState();
 	const [showCart, setShowCart] = useState(false);
-	const [products, setProducts] = useState([]);
-	const items  = useSelector((state) => state.cart.items);
+	const items = useSelector((state) => state.cart.items);
+	const { data, status } = useSelector((state) => state.product);
+	const dispatch = useDispatch();
 
 	const fetchProducts = async () => {
+		dispatch(productAction.fetchProductsStart());
 		await axios
 			.get("https://dummyjson.com/products")
 			.then((res) => {
-				setProducts(res.data.products);
+				dispatch(productAction.fetchProductsSuccess(res.data.products));
 			})
 			.catch((err) => {
-				console.error("Error fetching products:", err);
+				dispatch(productAction.fetchProductsFailure(err.message));
 			});
 	};
 	useEffect(() => {
 		fetchProducts();
 	}, []);
-
-	useEffect(() => {
-		console.log(items);
-	}, [items]);
 
 	return (
 		<>
@@ -44,7 +44,10 @@ export const Products = () => {
 				} transition-all duration-1000 ease-in-out`}>
 				<input
 					type="search"
-					className="w-full h-full outline-none "
+					className="w-full h-full outline-none"
+					onChange={(e) => {
+						dispatch(productAction.searchProduct(e.target.value));
+					}}
 				/>
 			</div>
 			<nav className="bg-[#7A9E7E] py-4 px-3 text-white fixed z-30 w-full top-0 left-0 flex justify-between items-center lg:px-20">
@@ -69,10 +72,9 @@ export const Products = () => {
 			</nav>
 
 			<div className="gap-6 px-5 pt-20 pb-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:gap-10 lg:mt-10 lg:grid-cols-4 lg:px-20">
-				{products.length < 1 ? (
-					<Skeleton />
-				) : (
-					products.map((product) => (
+				{status && <Skeleton />}
+				{data &&
+					data.map((product) => (
 						<ProductCard
 							key={product.id}
 							image={product.images[0]}
@@ -82,8 +84,7 @@ export const Products = () => {
 							availabilityStatus={product.availabilityStatus}
 							product={product}
 						/>
-					))
-				)}
+					))}
 			</div>
 		</>
 	);

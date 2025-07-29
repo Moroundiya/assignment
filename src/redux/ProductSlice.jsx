@@ -5,6 +5,7 @@ const productSlice = createSlice({
 	initialState: {
 		status: "idle",
 		data: [],
+		filterData: [],
 		error: null,
 	},
 	reducers: {
@@ -14,14 +15,26 @@ const productSlice = createSlice({
 		},
 		fetchProductsSuccess(state, action) {
 			state.data = action.payload;
-			state.loading = false;
+			state.filterData = action.payload;
+			state.status = false;
 		},
 		fetchProductsFailure(state, action) {
 			state.status = false;
 			state.error = action.payload;
 		},
+
+		searchProduct(state, action) {
+			const searchQuery = action.payload.toLowerCase();
+			if (!searchQuery.trim()) {
+				state.data = state.filterData;
+			} else {
+				state.data = state.filterData.filter((item) =>
+					item.title.toLowerCase().includes(searchQuery)
+				);
+			}
+		},
 	},
 });
 
 export const productAction = productSlice.actions;
-export default productSlice.reducer;
+export default productSlice;
