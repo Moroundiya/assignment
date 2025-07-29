@@ -1,7 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import React, { useState } from "react";
-import { Link } from "react-router";
-import img from "../assets/test-img.webp";
 
 export const ProductCard = ({
 	image,
@@ -9,6 +7,9 @@ export const ProductCard = ({
 	title,
 	category,
 	availabilityStatus,
+	product,
+	setCartItems,
+	cartItems,
 }) => {
 	const [imageLoaded, setImageLoaded] = useState(false);
 	return (
@@ -38,15 +39,15 @@ export const ProductCard = ({
 					{title}
 				</p>
 				<p className="text-[#54595F] lg:my-2 text-lg">${price}</p>
-				<Link
-					to="/1"
+				<p
+					onClick={() => setCartItems([...cartItems, product])}
 					className={`md:text-[0.7rem] lg:text-[0.85rem] bg-[#6a8d6a] xl:text-[0.9rem] flex justify-center items-center my-4 lg:mt-3 lg:mb-4  text-white px-2.5 py-1.5 lg:px-4 lg:py-2  rounded-full hover:text-white transition-all duration-500 hover:bg-[#7A9E7E]`}>
 					<span className="me-1 lg:me-2 ps-1">Add to Cart</span>
 					<Icon
 						icon="icons8:add-shopping-cart"
 						className="text-xl lg:text-3xl"
 					/>
-				</Link>
+				</p>
 			</div>
 		</div>
 	);

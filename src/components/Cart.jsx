@@ -1,6 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import img from "../assets/test-img.webp";
-export const Cart = ({ showCart, setShowCart }) => {
+export const Cart = ({ showCart, setShowCart, cartItems, setCartItems }) => {
 	return (
 		<div
 			className={`w-full h-full bg-[#000b00c9] fixed z-50 top-0 transition-all ease-in-out overflow-hidden ${
@@ -26,49 +25,31 @@ export const Cart = ({ showCart, setShowCart }) => {
 					<div className="h-full w-[50px] bg-[#7A9E7E]"></div>
 				</div>
 				<div className="mt-0 lg:mt-8 border-t border-[#0000001e] mb-5 h-[70%] md:h-[700px] lg:h-[70%] overflow-y-auto overflow-x-hidden">
-					<div className="py-3 border-b border-[#0000001e] flex w-full">
-						<div className="flex justify-between items-center w-full">
-							<div className="flex items-center">
-								<img
-									src={img}
-									alt=""
-									className="w-[75px] me-3"
-								/>
-								<div>
-									<p className="text-[#017D03] font-semibold">Product 1</p>
-									<p className="text-[#54595F] font-semibold flex items-center">
-										$10 <span className="ps-1">x 3</span>
-									</p>
+					{cartItems.map((item) => (
+						<div className="py-3 border-b border-[#0000001e] flex w-full">
+							<div className="flex justify-between items-center w-full">
+								<div className="flex items-center">
+									<img
+										src={item?.images[0]}
+										alt=""
+										className="w-[75px] me-3"
+									/>
+									<div>
+										<p className="text-[#017D03] font-semibold">
+											{item?.title}
+										</p>
+										<p className="text-[#54595F] font-semibold flex items-center">
+											${item?.price} <span className="ps-1">x 1</span>
+										</p>
+									</div>
 								</div>
-							</div>
-							<Icon
-								icon="iconoir:cancel"
-								className="text-[#FF9C00] text-2xl cursor-pointer"
-							/>
-						</div>
-					</div>
-					<div className="py-3 border-b border-[#0000001e] flex w-full">
-						<div className="flex justify-between items-center w-full">
-							<div className="flex items-center">
-								<img
-									src={img}
-									alt=""
-									className="w-[75px] me-3"
+								<Icon
+									icon="iconoir:cancel"
+									className="text-[#FF9C00] text-2xl cursor-pointer"
 								/>
-								<div>
-									<p className="text-[#017D03] font-semibold">Product 1</p>
-									<p className="text-[#54595F] font-semibold flex items-center">
-										$10 <span className="ps-1">x 3</span>
-									</p>
-								</div>
 							</div>
-							<Icon
-								icon="iconoir:cancel"
-								className="text-[#FF9C00] text-2xl cursor-pointer"
-							/>
 						</div>
-					</div>
-				
+					))}
 				</div>
 			</div>
 		</div>

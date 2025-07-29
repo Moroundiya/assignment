@@ -11,6 +11,7 @@ export const Products = () => {
 	const [search, setSearch] = useState(false);
 	const [showCart, setShowCart] = useState(false);
 	const [products, setProducts] = useState([]);
+	const [cartItems, setCartItems] = useState([]);
 
 	const fetchProducts = async () => {
 		await axios
@@ -26,11 +27,17 @@ export const Products = () => {
 		fetchProducts();
 	}, []);
 
+	useEffect(() => {
+		console.log(cartItems);
+	}, [cartItems]);
+
 	return (
 		<>
 			<Cart
 				showCart={showCart}
 				setShowCart={setShowCart}
+				cartItems={cartItems}
+				setCartItems={setCartItems}
 			/>
 			<div
 				className={`bg-white border border-[#7A9E7E] z-10 shadow-md rounded-md w-11/12 mx-auto lg:w-[300px] py-2 lg:py-1.5 px-2.5 absolute left-3 lg:left-20 ${
@@ -53,7 +60,7 @@ export const Products = () => {
 					className="relative cursor-pointer"
 					onClick={() => setShowCart(true)}>
 					<div className="w-5 h-5 bg-orange-500 text-white pointer-events-none text-[10px] font-semibold rounded-full absolute -top-2 -right-2 flex justify-center items-center">
-						20
+						{cartItems.length}
 					</div>
 					<Icon
 						icon="grommet-icons:cart"
@@ -74,6 +81,9 @@ export const Products = () => {
 							title={product.title}
 							category={product.category}
 							availabilityStatus={product.availabilityStatus}
+							product={product}
+							cartItems={cartItems}
+							setCartItems={setCartItems}
 						/>
 					))
 				)}
