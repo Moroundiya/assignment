@@ -1,17 +1,17 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Link } from "react-router";
-import productImg from "../assets/test-img.webp";
 import { useEffect, useState } from "react";
 import { Cart } from "../components/Cart";
 import axios from "axios";
 import { ProductCard } from "../components/ProductCard";
 import { Skeleton } from "../components/Skeleton";
+import { useDispatch, useSelector } from "react-redux";
 
 export const Products = () => {
 	const [search, setSearch] = useState(false);
 	const [showCart, setShowCart] = useState(false);
 	const [products, setProducts] = useState([]);
-	const [cartItems, setCartItems] = useState([]);
+	const items  = useSelector((state) => state.cart.items);
 
 	const fetchProducts = async () => {
 		await axios
@@ -28,16 +28,15 @@ export const Products = () => {
 	}, []);
 
 	useEffect(() => {
-		console.log(cartItems);
-	}, [cartItems]);
+		console.log(items);
+	}, [items]);
 
 	return (
 		<>
 			<Cart
 				showCart={showCart}
 				setShowCart={setShowCart}
-				cartItems={cartItems}
-				setCartItems={setCartItems}
+				cartItems={items}
 			/>
 			<div
 				className={`bg-white border border-[#7A9E7E] z-10 shadow-md rounded-md w-11/12 mx-auto lg:w-[300px] py-2 lg:py-1.5 px-2.5 absolute left-3 lg:left-20 ${
@@ -60,7 +59,7 @@ export const Products = () => {
 					className="relative cursor-pointer"
 					onClick={() => setShowCart(true)}>
 					<div className="w-5 h-5 bg-orange-500 text-white pointer-events-none text-[10px] font-semibold rounded-full absolute -top-2 -right-2 flex justify-center items-center">
-						{cartItems.length}
+						{items ? items.length : 0}
 					</div>
 					<Icon
 						icon="grommet-icons:cart"
@@ -82,8 +81,6 @@ export const Products = () => {
 							category={product.category}
 							availabilityStatus={product.availabilityStatus}
 							product={product}
-							cartItems={cartItems}
-							setCartItems={setCartItems}
 						/>
 					))
 				)}
