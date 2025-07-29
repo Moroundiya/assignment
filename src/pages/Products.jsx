@@ -5,16 +5,20 @@ import productImg from "../assets/test-img.webp";
 export const Products = () => {
 	return (
 		<>
-			<nav className="bg-[#7A9E7E] p-4 text-black flex justify-between items-center">
+			<nav className="bg-[#7A9E7E] py-4 px-3 text-black flex justify-between items-center lg:px-12">
 				<Icon
 					icon="mingcute:search-line"
 					className="text-2xl"
 				/>
 				<h1 className="text-2xl font-bold uppercase">Products</h1>
-				<Icon
-					icon="grommet-icons:cart"
-					className="text-2xl"
-				/>
+
+				<div className="relative">
+					<div className="w-5 h-5 bg-orange-500 text-white text-[11px] rounded-full absolute -top-2 -right-2 flex justify-center items-center">20</div>
+					<Icon
+						icon="grommet-icons:cart"
+						className="text-2xl"
+					/>
+				</div>
 			</nav>
 
 			<div className="mt-6 gap-6 px-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:mt-10 lg:grid-cols-4 xl:grid-cols-5 lg:px-12">
@@ -37,7 +41,7 @@ export const Products = () => {
 						<p className="text-[#54595F] lg:my-2 text-md lg:text-lg">$10</p>
 						<Link
 							to="/1"
-							className={`text-[0.7rem] lg:text-[0.85rem]pointer-events-auto bg-[#7A9E7E] xl:text-[0.9rem] flex justify-center items-center my-4 lg:mt-3 lg:mb-4  text-white px-2.5 py-1.5 lg:px-4 lg:py-2  rounded-full hover:text-white overflow-hidden relative transition-all duration-700 z-10 after:transition-all after:duration-700 after:origin-bottom  after:content-[""] after:absolute after:top-0 after:left-0 after:-z-10 after:w-full after:h-full after:bg-[#FF9C00] after:scale-y-0 after:hover:scale-y-[1]`}>
+							className={`text-[0.7rem] lg:text-[0.85rem] bg-[#6a8d6a] xl:text-[0.9rem] flex justify-center items-center my-4 lg:mt-3 lg:mb-4  text-white px-2.5 py-1.5 lg:px-4 lg:py-2  rounded-full hover:text-white transition-all duration-500 hover:bg-[#7A9E7E]`}>
 							<span className="me-1 lg:me-2 ps-1">Add to Cart</span>
 							<Icon
 								icon="icons8:add-shopping-cart"
