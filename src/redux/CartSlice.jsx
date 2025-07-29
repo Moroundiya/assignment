@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { Bounce, toast } from "react-toastify";
 const cartSlice = createSlice({
 	name: "cart",
 	initialState: {
@@ -21,6 +21,18 @@ const cartSlice = createSlice({
 					quantity: 1,
 				});
 			}
+
+			toast.success("Item added to cart!", {
+				position: "top-right",
+				autoClose: 2500,
+				hideProgressBar: false,
+				closeOnClick: false,
+				pauseOnHover: false,
+				draggable: false,
+				progress: undefined,
+				theme: "dark",
+				transition: Bounce,
+			});
 		},
 		removeItemFromCart(state, action) {
 			const itemId = action.payload.id;
@@ -31,6 +43,18 @@ const cartSlice = createSlice({
 			} else {
 				existingItem.quantity--;
 			}
+
+			toast.error("Item removed from cart!", {
+				position: "top-right",
+				autoClose: 2500,
+				hideProgressBar: false,
+				closeOnClick: false,
+				pauseOnHover: false,
+				draggable: false,
+				progress: undefined,
+				theme: "dark",
+				transition: Bounce,
+			});
 		},
 	},
 });

@@ -37,13 +37,13 @@ export const ProductCard = ({
 				<p className="text-[#54595F] lg:text-sm lg:text-md mb-1 lg:mb-2 capitalize">
 					{category}
 				</p>
-				<p className="font-semibold uppercase text-xl md:text-[1.05rem] lg:text-xl text-center">
+				<p className="font-semibold uppercase text-xl md:text-[1.05rem] lg:text-xl text-center mx-auto w-10/12 lg:w-full">
 					{title}
 				</p>
 				<p className="text-[#54595F] lg:my-2 text-lg">${price}</p>
 				<p
 					onClick={() => dispatch(cartActions.addItemToCart(product))}
-					className={`md:text-[0.7rem] lg:text-[0.85rem] bg-[#6a8d6a] xl:text-[0.9rem] flex justify-center items-center my-4 lg:mt-3 lg:mb-4  text-white px-2.5 py-1.5 lg:px-4 lg:py-2  rounded-full hover:text-white transition-all duration-500 hover:bg-[#7A9E7E]`}>
+					className={`md:text-[0.7rem] lg:text-[0.85rem] bg-[#6a8d6a] xl:text-[0.9rem] flex justify-center items-center my-4 lg:mt-3 lg:mb-4  text-white px-3 py-1.5 lg:px-4 lg:py-2  rounded-full hover:text-white transition-all duration-500 hover:bg-[#7A9E7E]`}>
 					<span className="me-1 lg:me-2 ps-1">Add to Cart</span>
 					<Icon
 						icon="icons8:add-shopping-cart"

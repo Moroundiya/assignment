@@ -7,6 +7,7 @@ import { ProductCard } from "../components/ProductCard";
 import { Skeleton } from "../components/Skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { productAction } from "../redux/ProductSlice";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 export const Products = () => {
 	const [search, setSearch] = useState(false);
@@ -22,9 +23,31 @@ export const Products = () => {
 			.get("https://dummyjson.com/products")
 			.then((res) => {
 				dispatch(productAction.fetchProductsSuccess(res.data.products));
+				toast.success("All product fetched!", {
+					position: "top-right",
+					autoClose: 2500,
+					hideProgressBar: false,
+					closeOnClick: false,
+					pauseOnHover: false,
+					draggable: false,
+					progress: undefined,
+					theme: "dark",
+					transition: Bounce,
+				});
 			})
 			.catch((err) => {
 				dispatch(productAction.fetchProductsFailure(err.message));
+				toast.error("Error Occur!", {
+					position: "top-right",
+					autoClose: 2500,
+					hideProgressBar: false,
+					closeOnClick: false,
+					pauseOnHover: false,
+					draggable: false,
+					progress: undefined,
+					theme: "dark",
+					transition: Bounce,
+				});
 			});
 	};
 	useEffect(() => {
@@ -86,6 +109,7 @@ export const Products = () => {
 						/>
 					))}
 			</div>
+			<ToastContainer />
 		</>
 	);
 };
