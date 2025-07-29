@@ -2,11 +2,18 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Link } from "react-router";
 import productImg from "../assets/test-img.webp";
 import { useState } from "react";
+import { Cart } from "../components/Cart";
 
 export const Products = () => {
 	const [search, setSearch] = useState(false);
+	const [showCart, setShowCart] = useState(false);
+
 	return (
 		<>
+			<Cart
+				showCart={showCart}
+				setShowCart={setShowCart}
+			/>
 			<div
 				className={`bg-white border border-[#7A9E7E] z-10 shadow-md rounded-md w-11/12 mx-auto lg:w-[300px] py-2 lg:py-1.5 px-2.5 absolute left-3 lg:left-12 ${
 					search ? "top-[70px]" : "-top-[100px]"
@@ -16,7 +23,7 @@ export const Products = () => {
 					className="w-full h-full outline-none "
 				/>
 			</div>
-			<nav className="bg-[#7A9E7E] py-4 px-3 text-black fixed z-50 w-full top-0 left-0 flex justify-between items-center lg:px-12">
+			<nav className="bg-[#7A9E7E] py-4 px-3 text-black fixed z-30 w-full top-0 left-0 flex justify-between items-center lg:px-12">
 				<Icon
 					icon={`${search ? "iconoir:cancel" : "mingcute:search-line"}`}
 					className="text-2xl transition-all duration-500 cursor-pointer ease-in-out"
@@ -24,7 +31,9 @@ export const Products = () => {
 				/>
 				<h1 className="text-2xl font-bold uppercase">Products</h1>
 
-				<div className="relative">
+				<div
+					className="relative cursor-pointer"
+					onClick={() => setShowCart(true)}>
 					<div className="w-5 h-5 bg-orange-500 text-white text-[11px] rounded-full absolute -top-2 -right-2 flex justify-center items-center">
 						20
 					</div>
